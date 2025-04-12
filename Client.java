@@ -16,6 +16,10 @@ public class Client {
         }
     }
 
-    
+    public void handshake() {
+    out.println("12345");
+    }
+
+
 
 }

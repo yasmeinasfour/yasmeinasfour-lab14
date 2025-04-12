@@ -19,6 +19,16 @@ public class Client {
     public void handshake() {
     out.println("12345");
     }
+    public String request(String number) {
+    try {
+        out.println(number);
+        return in.readLine();
+    } catch (IOException e) {
+        e.printStackTrace();
+        return "failed to send request.";
+    }
+    }
+
 
 
 

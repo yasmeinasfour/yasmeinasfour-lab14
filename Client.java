@@ -29,6 +29,17 @@ public class Client {
     }
     }
 
+    public void disconnect() {
+    try {
+        if (in != null) in.close();
+        if (out != null) out.close();
+        if (socket != null) socket.close();
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+    }
+
+
 
 
 

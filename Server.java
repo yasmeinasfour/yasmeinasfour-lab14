@@ -69,13 +69,13 @@ public class Server {
             try {
                 long number = Long.parseLong(numberStr);
                 if (number > Integer.MAX_VALUE) {
-                    out.println("number too large");
+                    out.println("There was an exception on the server");
                 } else {
                     int factorCount = countFactors(number);
-                    out.println("number " + number + " has " + factorCount + " factors");
+                    out.println("The number " + number + " has " + factorCount + " factors");
                 }
             } catch (Exception e) {
-                out.println("exception on the server");
+                out.println("There was an exception on the server");
             }
 
             clientSocket.close();

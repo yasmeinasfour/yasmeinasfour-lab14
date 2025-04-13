@@ -43,5 +43,48 @@ public class Server {
         }
     }
 
+    private int countFactors(long number) {
+        int count = 0;
+        for (long i = 1; i <= number; i++) {
+            if (number % i == 0) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    private void handleClient(Socket clientSocket) {
+        try {
+            BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+            PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
+
+            String handshake = in.readLine();
+            if (!"12345".equals(handshake)) {
+                out.println("couldn't handshake");
+                clientSocket.close();
+                return;
+            }
+
+            String numberStr = in.readLine();
+            try {
+                long number = Long.parseLong(numberStr);
+                if (number > Integer.MAX_VALUE) {
+                    out.println("number too large");
+                } else {
+                    int factorCount = countFactors(number);
+                    out.println("number " + number + " has " + factorCount + " factors");
+                }
+            } catch (Exception e) {
+                out.println("exception on the server");
+            }
+
+            clientSocket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
 
 }

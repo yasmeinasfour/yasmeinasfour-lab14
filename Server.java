@@ -84,6 +84,21 @@ public class Server {
         }
     }
 
+    public ArrayList<LocalDateTime> getConnectedTimes() {
+        Collections.sort(connectedTimes);
+        return connectedTimes;
+    }
+
+    public void disconnect() {
+        running = false;
+        threadPool.shutdown();
+        try {
+            serverSocket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 
 
